@@ -1,0 +1,15 @@
+---
+application:
+  name: "pros-data"
+  project: "Pros Data"
+  organization: "QoveryCommunity"
+databases:
+- type: "MONGODB"
+  name: "pros data"
+  version: "4.4"
+routers:
+- name: "main-pros-data"
+  routes:
+  - application_name: "pros-data"
+    paths:
+    - "/*"
