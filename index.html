@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="English" />
+
+  <!-- Primary Meta Tags -->
+  <title>Pros Data - Daily Stock Market's Partcipants Activity</title>
+  <meta name="title" content="Pros Data - Daily Stock Market's Partcipants Activity" />
+  <meta name="description" content="A place to view participants sentiment and their data with ease." />
+  <meta name="keywords"
+    content="participant data,nse participant data,nse,bse,nifty,sensex,nse india,stock market,stock market india,fiis,fiis data,fii,fii data,daily stock market data" />
+  <link rel="icon" href="img/icon.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="www.pros-data.tech" />
+  <meta property="og:title" content="Pros Data - Daily Stock Market's Partcipants Activity" />
+  <meta property="og:description" content="A place to view participants sentiment and their data with ease." />
+  <meta property="og:image" content="http://www.pros-data.tech/img/pros-data.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="www.pros-data.tech" />
+  <meta property="twitter:title" content="Pros Data - Daily Stock Market's Partcipants Activity" />
+  <meta property="twitter:description" content="A place to view participants sentiment and their data with ease." />
+  <meta property="twitter:image" content="http://www.pros-data.tech/img/pros-data.png" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2G78E9Z7NR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-2G78E9Z7NR");
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Ads: 878711869 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-878711869"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "AW-878711869");
+  </script>
+
+  <!-- Event snippet for Website traffic conversion page -->
+  <script>
+    gtag("event", "conversion", {
+      send_to: "AW-878711869/7kjMCNv9jYACEL2ogKMD",
+    });
+  </script>
+
+  <!-- Custom fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
+    crossorigin="anonymous" />
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" /> -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet" />
+
+  <!-- Custom styles for this template-->
+  <link href="css/style.min.css" rel="stylesheet" />
+  <link href="css/loader.css" rel="stylesheet" />
+
+  <style>
+    img {
+      width: 0% !important;
+    }
+  </style>
+</head>
+
+<body style="overflow: hidden">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav class="
+              navbar navbar-expand navbar-light
+              topbar
+              mb-4
+              static-top
+              shadow
+            ">
+          <!-- Pros Data -->
+          <img class="rounded img-fluid mr-auto ml-md-3 my-2 my-md-0 mw-100"
+            style="max-width: 150px !important; width: 25% !important" src="img/logo.png" alt="Pros Data" />
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Updated Info-->
+            <p class="text-gray-900 m-auto" id="lstUpd">Last Updated on</p>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid px-3">
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-8 col-md-8 mb-4">
+              <div class="card shadow h-100 py-1">
+                <div class="card-body">
+                  <div class="
+                        text-center text-md
+                        font-weight-bold
+                        text-grey text-uppercase
+                        mb-4
+                      ">
+                    Market Sentiments
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6 col-md-12 text-center">
+                      <div class="h2 font-weight-bold text-uppercase mb-1" id="mrktSent"></div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12">
+                      <canvas id="sntmnt"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- participant view -->
+            <div class="col-xl-4 col-md-4 mb-4">
+              <div class="card shadow h-100 py-1">
+                <div class="card-body">
+                  <div class="
+                        text-lg
+                        font-weight-bold
+                        text-primary text-uppercase
+                        mb-1
+                      ">
+                    Participant View
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-light table-striped text-gray-900" style="width: 100% !important">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Clients</th>
+                          <th id="clientView"></th>
+                        </tr>
+                        <tr>
+                          <th>DIIs</th>
+                          <th id="diiView"></th>
+                        </tr>
+                        <tr>
+                          <th>FIIs</th>
+                          <th id="fiiView"></th>
+                        </tr>
+                        <tr>
+                          <th>Pro</th>
+                          <th id="proView"></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Index Futures -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="
+                            text-lg
+                            font-weight-bold
+                            text-primary text-uppercase
+                            mb-1
+                          ">
+                        Index Futures
+                      </div>
+                      <div class="text-gray-800">
+                        <table class="
+                              table
+                              table-light
+                              table-striped
+                              table-responsive-xl
+                              text-gray-900
+                            " id="tblIndFut">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th colspan="2">Longs</th>
+                              <th colspan="2">Shorts</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody id="counters_1">
+                            <tr>
+                              <td class="font-weight-bold">Clients</td>
+                              <td>Longs</td>
+                              <td class="counter" id="IdxFutLC" data-TargetNum="12291">
+                                0
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="IdxFutSC" data-TargetNum="2778">
+                                0
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">DIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="IdxFutLD" data-TargetNum="945">
+                                945
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="IdxFutSD" data-TargetNum="15">
+                                15
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">FIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="IdxFutLF" data-TargetNum="-10351">
+                                0
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="IdxFutSF" data-TargetNum="1167">
+                                0
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">Pro</td>
+                              <td>Longs</td>
+                              <td class="counter" id="IdxFutLP" data-TargetNum="-1132">
+                                0
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="IdxFutSP" data-TargetNum="-2207">
+                                0
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stock Futures -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="
+                            text-lg
+                            font-weight-bold
+                            text-success text-uppercase
+                            mb-1
+                          ">
+                        Stocks Futures
+                      </div>
+                      <div>
+                        <table class="
+                              table
+                              table-light
+                              table-striped
+                              table-responsive-xl
+                              text-gray-900
+                            ">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th colspan="2">Longs</th>
+                              <th colspan="2">Shorts</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody id="counters_1">
+                            <tr>
+                              <td class="font-weight-bold">Clients</td>
+                              <td>Longs</td>
+                              <td class="counter" id="StkFutLC" data-TargetNum="12291">
+                                12,291
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="StkFutSC" data-TargetNum="2778">
+                                2,778
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">DIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="StkFutLD" data-TargetNum="945">
+                                945
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="StkFutSD" data-TargetNum="15">
+                                15
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">FIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="StkFutLF" data-TargetNum="-10351">
+                                -10,351
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="StkFutSF" data-TargetNum="1167">
+                                1,167
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">Pro</td>
+                              <td>Longs</td>
+                              <td class="counter" id="StkFutLP" data-TargetNum="-1132">
+                                -1,132
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="StkFutSP" data-TargetNum="-2207">
+                                -2,207
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Index Call Options -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="
+                            text-lg
+                            font-weight-bold
+                            text-info text-uppercase
+                            mb-1
+                          ">
+                        Index Call Options
+                      </div>
+                      <div>
+                        <div class="">
+                          <table class="
+                                table
+                                table-light
+                                table-striped
+                                table-responsive-xl
+                                text-gray-900
+                              ">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th colspan="2">Longs</th>
+                                <th colspan="2">Shorts</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody id="counters_1">
+                              <tr>
+                                <td class="font-weight-bold">Clients</td>
+                                <td>Longs</td>
+                                <td class="counter" id="OptCallLC" data-TargetNum="12291">
+                                  12,291
+                                </td>
+                                <td>Shorts</td>
+                                <td class="counter" id="OptCallSC" data-TargetNum="2778">
+                                  2,778
+                                </td>
+                                <td class="font-weight-bold"></td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">DIIs</td>
+                                <td>Longs</td>
+                                <td class="counter" id="OptCallLD" data-TargetNum="945">
+                                  945
+                                </td>
+                                <td>Shorts</td>
+                                <td class="counter" id="OptCallSD" data-TargetNum="15">
+                                  15
+                                </td>
+                                <td class="font-weight-bold"></td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">FIIs</td>
+                                <td>Longs</td>
+                                <td class="counter" id="OptCallLF" data-TargetNum="-10351">
+                                  -10,351
+                                </td>
+                                <td>Shorts</td>
+                                <td class="counter" id="OptCallSF" data-TargetNum="1167">
+                                  1,167
+                                </td>
+                                <td class="font-weight-bold"></td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">Pro</td>
+                                <td>Longs</td>
+                                <td class="counter" id="OptCallLP" data-TargetNum="-1132">
+                                  -1,132
+                                </td>
+                                <td>Shorts</td>
+                                <td class="counter" id="OptCallSP" data-TargetNum="-2207">
+                                  -2,207
+                                </td>
+                                <td class="font-weight-bold"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Index Put Options -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="
+                            text-lg
+                            font-weight-bold
+                            text-warning text-uppercase
+                            mb-1
+                          ">
+                        Index Put Options
+                      </div>
+                      <div>
+                        <table class="
+                              table
+                              table-light
+                              table-striped
+                              table-responsive-xl
+                              text-gray-900
+                            ">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th colspan="2">Longs</th>
+                              <th colspan="2">Shorts</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody id="counters_1">
+                            <tr>
+                              <td class="font-weight-bold">Clients</td>
+                              <td>Longs</td>
+                              <td class="counter" id="OptPutLC" data-TargetNum="12291">
+                                12,291
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="OptPutSC" data-TargetNum="2778">
+                                2,778
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">DIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="OptPutLD" data-TargetNum="945">
+                                945
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="OptPutSD" data-TargetNum="15">
+                                15
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">FIIs</td>
+                              <td>Longs</td>
+                              <td class="counter" id="OptPutLF" data-TargetNum="-10351">
+                                -10,351
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="OptPutSF" data-TargetNum="1167">
+                                1,167
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                            <tr>
+                              <td class="font-weight-bold">Pro</td>
+                              <td>Longs</td>
+                              <td class="counter" id="OptPutLP" data-TargetNum="-1132">
+                                -1,132
+                              </td>
+                              <td>Shorts</td>
+                              <td class="counter" id="OptPutSP" data-TargetNum="-2207">
+                                -2,207
+                              </td>
+                              <td class="font-weight-bold"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="
+                  card-header
+                  py-3
+                  d-flex
+                  flex-row
+                  align-items-center
+                  justify-content-between
+                ">
+              <h6 class="m-0 font-weight-bold text-primary" id="chartTitle">
+                Future Index Data
+              </h6>
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-800"></i>
+                </a>
+                <div class="
+                      dropdown-menu dropdown-menu-right
+                      shadow
+                      animated--fade-in
+                    " aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Futures</div>
+                  <a class="dropdown-item active" onclick="updateChart('Future Index',this)">Index</a>
+                  <a class="dropdown-item" onclick="updateChart('Future Stock',this)">Stock</a>
+                  <div class="dropdown-header">Options</div>
+                  <a class="dropdown-item" onclick="updateChart('Option Index Call',this)">Index Call</a>
+                  <a class="dropdown-item" onclick="updateChart('Option Index Put',this)">Index Put</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" onclick="downloadChart()" href="#">Download Chart
+                    <i class="fas fa-download fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body" style="height: 35vw; min-height: 55vh">
+              <div class="chart-area" style="height: 30vw; min-height: 50vh">
+                <canvas id="myAreaChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Pros Data 2021</span>
+            <p class="font-weight-bold h6 mt-2">
+              <a href="mailto:contact@pros-data.tech">Contact Us</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+  <div class="loader-wrapper">
+    <div class="gooey">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="js/multi-animated-counter.js"></script> -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/chart.js/chartjs-plugin-deferred.min.js"></script>
+
+  <!-- Page level custom scripts -->
+
+  <!-- API Data Call-->
+  <script src="js/data.js"></script>
+  <!-- <script src="js/multi-animated-counter.js"></script> -->
+
+  <!-- Index Futures Chart-->
+  <script>
+    var ctx = document.getElementById("myAreaChart");
+    var myLineChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "04/01/21",
+          "05/01/21",
+          "06/01/21",
+          "07/01/21",
+          "08/01/21",
+          "11/01/21",
+          "12/01/21",
+        ],
+        datasets: [
+          {
+            label: "FIIs",
+            borderColor: "#F16A70",
+            fill: false,
+            data: [94250, 88409, 75059, 63541, 53428, 54389, 43380],
+          },
+          {
+            label: "DIIs",
+            borderColor: "#B1D877",
+            fill: false,
+            data: [75420, 84230, 51230, 68452, 74158, 65874, 33380],
+          },
+          {
+            label: "Clients",
+            borderColor: "#8CDCDA",
+            fill: false,
+            data: [75420, 84230, 51230, 68452, 74158, 65874, 33380],
+          },
+          {
+            label: "Pros",
+            borderColor: "#4D4D4D",
+            fill: false,
+            data: [75420, 84230, 51230, 68452, 74158, 65874, 33380],
+          },
+        ],
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Future Index Data",
+        },
+        deferred: {
+          delay: 700,
+          yOffset: "80%",
+        },
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              time: {
+                unit: "date",
+              },
+              gridLines: {
+                display: false,
+                drawBorder: false,
+              },
+              ticks: {
+                maxTicksLimit: 7,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                maxTicksLimit: 5,
+                padding: 10,
+              },
+              gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false,
+                borderDash: [2],
+                zeroLineBorderDash: [2],
+              },
+            },
+          ],
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#858796",
+          titleMarginBottom: 10,
+          titleFontColor: "#6e707e",
+          titleFontSize: 14,
+          borderColor: "#dddfeb",
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          intersect: false,
+          mode: "index",
+          caretPadding: 10,
+          callbacks: {
+            label: function (tooltipItem, chart) {
+              var datasetLabel =
+                chart.datasets[tooltipItem.datasetIndex].label || "";
+              return datasetLabel + ": " + number_format(tooltipItem.yLabel);
+            },
+          },
+        },
+      },
+    });
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+      // *     example: number_format(1234.56, 2, ',', ' ');
+      // *     return: '1 234,56'
+      number = (number + "").replace(",", "").replace(" ", "");
+      var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = typeof thousands_sep === "undefined" ? "," : thousands_sep,
+        dec = typeof dec_point === "undefined" ? "." : dec_point,
+        s = "",
+        toFixedFix = function (n, prec) {
+          var k = Math.pow(10, prec);
+          return "" + Math.round(n * k) / k;
+        };
+      // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+      s = (prec ? toFixedFix(n, prec) : "" + Math.round(n)).split(".");
+      if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+      }
+      if ((s[1] || "").length < prec) {
+        s[1] = s[1] || "";
+        s[1] += new Array(prec - s[1].length + 1).join("0");
+      }
+      return s.join(dec);
+    }
+
+    function downloadChart() {
+      var canv = myLineChart.canvas;
+      fillCanvasBackgroundWithColor(canv, "white");
+
+      var a = document.createElement("a");
+      a.href = myLineChart.toBase64Image();
+      a.download = myLineChart.options.title.text + ".png";
+
+      // Trigger the download
+      a.click();
+    }
+  </script>
+
+  <script>
+    let myLineExtend = Chart.controllers.line.prototype.draw;
+
+    var ctx = document.getElementById("sntmnt").getContext("2d");
+
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+      draw: function () {
+        myLineExtend.apply(this, arguments);
+        this.chart.chart.ctx.textAlign = "center";
+        this.chart.chart.ctx.font = "1rem 'Segoe UI' black";
+        this.chart.chart.ctx.fillText("www.pros-data.tech", myLineChart.width / 2, myLineChart.height / 2);
+      },
+    });
+
+    var sntmntChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: ["Bullish", "Bearish"],
+        datasets: [
+          {
+            data: [0, 0],
+            label: ["60%", "40%"],
+            backgroundColor: ["#1cc88a", "#e74a3b"],
+            hoverBorderWidth: 10,
+          },
+        ],
+      },
+      options: {
+        circumference: 1 * Math.PI,
+        rotation: 1 * Math.PI,
+        legend: {
+          display: true,
+          onClick: function () { },
+          position: "bottom",
+        },
+        maintainAspectRatio: false,
+        responsive: true,
+      },
+    });
+  </script>
+  <!-- start webpushr code -->
+  <script>
+    (function (w, d, s, id) {
+      if (typeof w.webpushr !== "undefined") return;
+      w.webpushr =
+        w.webpushr ||
+        function () {
+          (w.webpushr.q = w.webpushr.q || []).push(arguments);
+        };
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      js = d.createElement(s);
+      js.id = id;
+      js.async = 1;
+      js.src = "https://cdn.webpushr.com/app.min.js";
+      fjs.parentNode.appendChild(js);
+    })(window, document, "script", "webpushr-jssdk");
+    webpushr("setup", {
+      key: "BMBaUj31K9fYXJL53F8N3JDs7xQUcqUW0IHtVv1ulDJp-g_j72GSl4uTR6usSgjtMX4l8tpy5UxOJIUSSixCNDM",
+    });
+  </script>
+  <!-- end webpushr code -->
+</body>
+
+</html>
